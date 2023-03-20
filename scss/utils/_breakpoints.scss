@@ -1,0 +1,13 @@
+// mobile first
+// 768  px, 1024px, 1400px
+$breakpoints-up: (
+  "medium": "25em",
+  "large": "64em",
+  "xlarge": "87.5em",
+);
+
+@mixin breakpoint($size) {
+  @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}

@@ -1,0 +1,37 @@
+:root {
+  --Primary-100: 220 98% 61%;
+  --Primary-200: linear-gradient(hsl(192 100% 67%), hsl(280 87% 65%));
+
+  //   light theme
+  --Neutral-100: 0 0% 98%;
+  --Neutral-200: 236 33% 92%;
+  --Neutral-300: 233 11% 84%;
+  --Neutral-400: 236 9% 61%;
+  --Neutral-500: 235 19% 35%;
+
+  --todo-text: hsl(var(--Neutral-500));
+
+  // font-family: 'Barlow', sans-serif;
+  // font-family: 'Josefin Sans', sans-serif;
+}
+
+body.dark-theme {
+  --Neutral-100: 235 21% 11%;
+  --Neutral-200: 235 24% 19%;
+  --Neutral-300: 234 39% 85%;
+  --Neutral-hover: 236 33% 92%;
+  --Neutral-400: 234 11% 52%;
+  --Neutral-500: 233 14% 35%;
+  --Neutral-600: 237 14% 26%;
+
+  --todo-text: hsl(var(--Neutral-300));
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

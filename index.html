@@ -1,36 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Todo app</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="./js/script.js" defer></script>
+    <link rel="stylesheet" href="./dist/style.css" />
 
-  Todo
+    <title>Frontend Mentor | Todo app</title>
 
-  <!-- Add dynamic number --> items left
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="header"></header>
 
-  All
-  Active 
-  Completed
+      <main>
+        <header class="main">
+          <h1 class="main__title">todo</h1>
+          <button class="main__toggle--btn" toggle-btn>
+            <span class="visually-hidden">dark / light</span>
+          </button>
+        </header>
 
-  Clear Completed
+        <form action="" class="form">
+          <label for="text" class="input-label">
+            <input class="todo-input" type="text" name="text" id="todo-input" placeholder="Create a new todo..." />
+          </label>
+        </form>
 
-  Drag and drop to reorder list
+        <div class="todo__wrapper">
+          <ul class="todo__list">
+            <li class="todo__list--item done">
+              <input type="checkbox" name="todo" id="item-1" />
+              <label for="item-1"> lorem </label>
+              <button class="delete-btn">
+                <img src="./images/icon-cross.svg" alt="" />
+              </button>
+            </li>
 
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+            <li class="todo__list--item done">
+              <input type="checkbox" name="todo" id="item-2" />
+              <label for="item-2"> lorem </label>
+              <button class="delete-btn">
+                <img src="./images/icon-cross.svg" alt="" />
+              </button>
+            </li>
+          </ul>
+
+          <div class="todo__tabs">
+            <p class="items-left">5 items left</p>
+
+            <div class="todo__tabs--button desktop">
+              <button class="button--item" data-active-tab>All</button>
+              <button class="button--item">Active</button>
+              <button class="button--item">Completed</button>
+            </div>
+
+            <button class="button--item" data-button-value="clear">Clear Complete</button>
+          </div>
+        </div>
+        <!-- mobile tabs -->
+        <div class="todo__tabs--button mobile">
+          <button class="button--item" data-active-tab>All</button>
+          <button class="button--item">Active</button>
+          <button class="button--item">Completed</button>
+        </div>
+      </main>
+    </div>
+
+    <div class="attribution">Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a href="#">Your Name Here</a>.</div>
+  </body>
 </html>
