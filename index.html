@@ -38,48 +38,34 @@
           </button>
         </header>
 
-        <form action="" class="form">
+        <form action="" class="form" data-form>
           <label for="text" class="input-label">
-            <input class="todo-input" type="text" name="text" id="todo-input" placeholder="Create a new todo..." />
+            <input class="todo-input" type="text" name="text" id="todo-input" placeholder="Create a new todo..." data-input />
           </label>
         </form>
 
         <div class="todo__wrapper">
-          <ul class="todo__list">
-            <li class="todo__list--item done">
-              <input type="checkbox" name="todo" id="item-1" />
-              <label for="item-1"> lorem </label>
-              <button class="delete-btn">
-                <img src="./images/icon-cross.svg" alt="" />
-              </button>
-            </li>
-
-            <li class="todo__list--item done">
-              <input type="checkbox" name="todo" id="item-2" />
-              <label for="item-2"> lorem </label>
-              <button class="delete-btn">
-                <img src="./images/icon-cross.svg" alt="" />
-              </button>
-            </li>
+          <ul class="todo__list" data-todo-list>
+            <!--  -->
           </ul>
 
           <div class="todo__tabs">
-            <p class="items-left">5 items left</p>
+            <p class="items-left"><span data-count>5</span> items left</p>
 
             <div class="todo__tabs--button desktop">
-              <button class="button--item" data-active-tab>All</button>
-              <button class="button--item">Active</button>
-              <button class="button--item">Completed</button>
+              <button class="button--item" data-active-tab data-tab="all" aria-label="display all todo list">All</button>
+              <button class="button--item" data-tab="active" aria-label="display all active todo list">Active</button>
+              <button class="button--item" data-tab="completed" aria-label="display all completed todo list">Completed</button>
             </div>
 
-            <button class="button--item" data-button-value="clear">Clear Complete</button>
+            <button class="button--item" data-clear="clear">Clear Complete</button>
           </div>
         </div>
         <!-- mobile tabs -->
         <div class="todo__tabs--button mobile">
-          <button class="button--item" data-active-tab>All</button>
-          <button class="button--item">Active</button>
-          <button class="button--item">Completed</button>
+          <button class="button--item" data-active-tab data-tab="all" aria-label="display all todo list">All</button>
+          <button class="button--item" data-tab="active" aria-label="display all active todo list">Active</button>
+          <button class="button--item" data-tab="completed" aria-label="display all completed todo list">Completed</button>
         </div>
       </main>
     </div>
