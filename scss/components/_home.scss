@@ -1,5 +1,10 @@
 @use "../utils/" as *;
 
+body {
+  background-color: hsl(var(--Neutral-100));
+  overflow-x: hidden;
+}
+
 .header {
   height: 30vh;
   background-image: url(../../images/bg-mobile-light.jpg);
@@ -8,6 +13,7 @@
 
   @include breakpoint(medium) {
     background-image: url(../../images/bg-desktop-light.jpg);
+    height: 40vh;
   }
 }
 .header.dark-theme {
@@ -19,11 +25,16 @@
 }
 
 main {
-  width: min(90%, rem(500));
+  margin-top: 2.5rem;
+  width: min(90%, rem(600));
   margin-inline: auto;
   position: relative;
-  // background-color: red;
   top: -11rem;
+
+  @include breakpoint(medium) {
+    margin-top: 0;
+  }
+
   header.main {
     display: flex;
     align-items: center;
@@ -74,6 +85,41 @@ main {
         transform: translate(70%, 50%);
       }
 
+      > .svg-invalid-input {
+        position: absolute;
+        // border: rem(2) solid hsl(var(--Neutral-200));
+        // background-color: red;
+        z-index: 1;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        width: 1.5rem;
+
+        left: 0;
+        bottom: 50%;
+        transform: translate(70%, 50%);
+
+        display: none;
+
+        &:hover + .invalid-text {
+          opacity: 1;
+          transform: translateY(-50%) translateX(0%);
+        }
+      }
+
+      > .svg-invalid-input.activate {
+        display: block;
+      }
+
+      > .invalid-text {
+        position: absolute;
+        color: red;
+        z-index: 1;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%) translateX(100%);
+        opacity: 0;
+      }
+
       .todo-input {
         width: 100%;
         font-family: $font-200;
@@ -83,6 +129,10 @@ main {
         border: none;
         border-radius: 0.3em;
         position: relative;
+      }
+
+      .invalid-input {
+        border: rem(2) solid red;
       }
     }
   }
@@ -152,8 +202,9 @@ main {
         }
 
         > label {
-          // outline: 1px solid red;
-          width: 100%;
+          // outline: 1px solid re  d;
+          width: 90%;
+          overflow-wrap: break-word;
           height: 110%;
           padding-block: 0.8em;
           padding-left: 2.2em;
@@ -171,8 +222,10 @@ main {
             border-radius: 50%;
             width: 1.7rem;
 
-            top: rem(28);
+            // top: rem(28);
             left: rem(29);
+            top: 50%;
+            // left: 10%;
             transform: translate(-50%, -50%);
           }
 
@@ -180,7 +233,7 @@ main {
             display: none;
             position: absolute;
             content: "";
-            top: rem(28);
+            top: 50%;
             left: rem(25);
 
             width: rem(6);
@@ -193,10 +246,16 @@ main {
 
         .delete-btn {
           border: none;
+
           background-color: transparent;
           cursor: pointer;
           opacity: 0;
         }
+      }
+
+      &--item.dragging {
+        opacity: 0.75;
+        background-color: hsl(var(--draggable-style));
       }
     }
   }

@@ -11,6 +11,8 @@
 
   --todo-text: hsl(var(--Neutral-500));
 
+  --draggable-style: 234 39% 85%;
+
   // font-family: 'Barlow', sans-serif;
   // font-family: 'Josefin Sans', sans-serif;
 }
@@ -25,6 +27,8 @@ body.dark-theme {
   --Neutral-600: 237 14% 26%;
 
   --todo-text: hsl(var(--Neutral-300));
+
+  --draggable-style: 235 19% 35%;
 }
 
 .visually-hidden {
