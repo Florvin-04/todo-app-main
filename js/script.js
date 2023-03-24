@@ -41,6 +41,8 @@ if (getTheme === "dark-theme") {
 let todoStorage = JSON.parse(localStorage.getItem("todoStorage")) || [];
 let currentTab = "all";
 
+displayTodos();
+
 function addTodo(e) {
   e.preventDefault();
   let inputValue = todoInput.value;
@@ -101,7 +103,6 @@ function displayTodos(currentTab = "all") {
     }
   });
 }
-displayTodos();
 
 function renderList(todo) {
   let documentFragment = new DocumentFragment();
@@ -109,6 +110,7 @@ function renderList(todo) {
   const todoItem = document.createElement("li");
   todoItem.className = "todo__list--item";
   todoItem.setAttribute("id", `${todo.id}`);
+  // todoItem.setAttribute("item-position", `${todo.position}`);
   todoItem.setAttribute("draggable", `${todo.completed ? "false" : "true"}`);
   todoItem.setAttribute("data-todo-item", `${todo.completed ? "completed" : "active"}`);
 
@@ -136,63 +138,45 @@ function renderList(todo) {
   checkBox.addEventListener("click", (e) => checkBoxToggle(e));
   deleteBtn.addEventListener("click", (e) => removeTodo(e));
 
-  const dragableItems = document.querySelectorAll("[data-todo-item]");
-
-  dragableItems.forEach((item) => {
-    item.addEventListener("dragstart", () => {
-      item.classList.add("dragging");
-    });
-
-    item.addEventListener("dragend", () => {
-      item.classList.remove("dragging");
-    });
-  });
-
-  // end
+  dragElements();
 }
 
-todoList.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  const currentlyDradding = document.querySelector(".dragging");
+function dragElements() {
+  let dragableItems = todoList.querySelectorAll("[data-todo-item]"),
+    current_pos,
+    drop_pos;
 
-  // const currentlyDraddingID = currentlyDradding.getAttribute("id");
+  dragableItems.forEach((item) => {
+    item.ondragstart = function () {
+      const currentItemID = this.getAttribute("id");
+      this.classList.add("dragging");
+      current_pos = todoStorage.findIndex((item) => item.id === Number(currentItemID));
+    };
 
-  // const currentlyDraddingIdx = todoStorage.findIndex((item) => item.id === Number(currentlyDraddingID));
+    item.addEventListener("dragenter", () => {
+      item.classList.add("dragging-enter");
+    });
 
-  // console.log(currentlyDraddingIdx);
+    item.addEventListener("dragleave", () => {
+      item.classList.remove("dragging-enter");
+    });
 
-  const afterElement = dragAfterElement(todoList, e.clientY);
+    item.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
 
-  // const afterElementID = currentlyDradding.getAttribute("id");
+    item.ondrop = function (e) {
+      e.preventDefault();
+      item.classList.remove("dragging");
+      const currentItemID = this.getAttribute("id");
+      drop_pos = todoStorage.findIndex((item) => item.id === Number(currentItemID));
 
-  // const afterElementIdx = todoStorage.findIndex((item) => item.id === Number(afterElementID));
-
-  // console.log(afterElementIdx);
-
-  if (afterElement == null) {
-    todoList.appendChild(currentlyDradding);
-  } else {
-    todoList.insertBefore(currentlyDradding, afterElement);
-  }
-});
-
-// yPosition mouse position in y axis
-function dragAfterElement(container, yPosition) {
-  const draggableItems = [...container.querySelectorAll("[draggable]:not(.dragging)")];
-
-  return draggableItems.reduce(
-    (closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = yPosition - box.top - box.height / 2;
-
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    },
-    { offset: Number.NEGATIVE_INFINITY }
-  ).element;
+      todoStorage.splice(drop_pos, 0, todoStorage.splice(current_pos, 1)[0]);
+      localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
+      pushCompleteTodoToLast();
+      displayTodos();
+    };
+  });
 }
 
 // render while lists are empty
@@ -278,7 +262,7 @@ function pushCompleteTodoToLast() {
     const spliceItem = todoStorage.splice(itemInStorage, 1);
     todoStorage.push(...spliceItem);
     localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
-    console.log(todoStorage);
+    // console.log(todoStorage);
     displayTodos();
   });
 }
@@ -328,3 +312,8 @@ tabList.forEach((tab) => {
     displayTodos(tabValue);
   });
 });
+
+window.onload = () => {
+  pushCompleteTodoToLast();
+  displayTodos();
+};

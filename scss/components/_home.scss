@@ -1,5 +1,10 @@
 @use "../utils/" as *;
 
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   background-color: hsl(var(--Neutral-100));
   overflow-x: hidden;
@@ -253,8 +258,13 @@ main {
         }
       }
 
+      &--item.dragging-enter {
+        opacity: 0.25;
+        background-color: hsl(var(--draggable-style));
+      }
+
       &--item.dragging {
-        opacity: 0.75;
+        // opacity: 0.75;
         background-color: hsl(var(--draggable-style));
       }
     }
@@ -276,6 +286,10 @@ main {
   > button {
     font-size: 0.8rem;
     font-weight: 200;
+
+    &:hover {
+      color: var(--todo-text);
+    }
   }
 }
 
@@ -311,6 +325,10 @@ main {
   border: none;
   cursor: pointer;
   color: hsl(var(--Neutral-400));
+
+  &:hover {
+    color: var(--todo-text);
+  }
 }
 .button--item[data-active-tab] {
   color: hsl(var(--Primary-100));

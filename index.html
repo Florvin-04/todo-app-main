@@ -18,11 +18,14 @@
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
       .attribution {
+        margin-bottom: 5rem;
+        position: relative;
+
         font-size: 11px;
         text-align: center;
       }
       .attribution a {
-        color: hsl(228, 45%, 44%);
+        color: var(--todo-text);
       }
     </style>
   </head>
@@ -73,8 +76,10 @@
           <button class="button--item" data-tab="completed" aria-label="display all completed todo list">Completed</button>
         </div>
       </main>
-    </div>
 
-    <div class="attribution">Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a href="#">Your Name Here</a>.</div>
+      <footer aria-details="includes challenge by and the challenger">
+        <div class="attribution">Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a target="_blank" href="https://github.com/Florvin-04/todo-app-main.git">FLORVIN</a>.</div>
+      </footer>
+    </div>
   </body>
 </html>
