@@ -1,4 +1,4 @@
-import { animation, addAnimation } from "./animation.js";
+// import { animation, addAnimation } from "./animation.js";
 
 const switchThemeBtn = document.querySelector("[toggle-btn]");
 const body = document.querySelector("body");
@@ -74,13 +74,13 @@ function addTodo(e) {
 
   displayTodos();
 
-  const animate = addAnimation(todoList.lastChild, animation.fadeIn, {
-    duration: 250,
-  });
+  // const animate = addAnimation(todoList.lastChild, animation.fadeIn, {
+  //   duration: 250,
+  // });
 
-  animate.onfinish = () => {
-    pushCompleteTodoToLast();
-  };
+  // animate.onfinish = () => {
+  //   pushCompleteTodoToLast();
+  // };
 
   todoInput.value = "";
 }
@@ -222,13 +222,13 @@ function removeTodo(e) {
 
   localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
 
-  const animate = addAnimation(parent, animation.fadeOut, {
-    duration: 250,
-  });
+  // const animate = addAnimation(parent, animation.fadeOut, {
+  //   duration: 250,
+  // });
 
-  animate.onfinish = () => {
-    displayTodos(currentTab);
-  };
+  // animate.onfinish = () => {
+  //   displayTodos(currentTab);
+  // };
   // displayTodos(currentTab);
 }
 
